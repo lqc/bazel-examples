@@ -2,6 +2,7 @@ package(default_visibility = ["//visibility:public"])
 
 exports_files([
     "package.json",
+    "jest-reporter.js",
 ])
 
 load("@npm//@bazel/typescript:index.bzl", "ts_config")

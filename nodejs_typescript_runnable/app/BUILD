@@ -2,6 +2,7 @@ load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
+load("//:jest.bzl", "jest_test")
 
 ts_project(
     name = "app_compiled",
@@ -31,4 +32,36 @@ nodejs_binary(
     ],
     entry_point = ":index.js"
 
+)
+
+# Test targets
+ts_project(
+    name = "test_compiled",
+    srcs = glob(["tests/*.spec.ts"]),
+    declaration = True,
+    tsconfig = "//:tsconfig_node",
+    validate = True,
+    composite = True,
+    root_dir = "tests",
+    deps = [
+        "@npm//@types",
+        "@npm//jest",
+    ]
+)
+
+exports_files([
+    "jest.config.js",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+jest_test(
+    name = "test",
+    jest_config = ":jest.config.js",
+    srcs = [
+        ":test_compiled",
+    ],
+    deps = [
+        "@npm//@types/jest",
+    ],
 )

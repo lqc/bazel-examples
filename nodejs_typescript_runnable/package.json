@@ -4,9 +4,12 @@
     "private": true,
     "devDependencies": {
         "@bazel/bazelisk": "latest",
-        "@bazel/ibazel": "latest",
         "@bazel/buildifier": "latest",
+        "@bazel/ibazel": "latest",
         "@bazel/typescript": "~4.0.0",
+        "@types/jest": "^27.0.1",
+        "jest": "^27.1.0",
+        "jest-cli": "^27.1.0",
         "typescript": "~4.3.0"
     },
     "scripts": {
