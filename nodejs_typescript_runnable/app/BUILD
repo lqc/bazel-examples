@@ -19,7 +19,7 @@ ts_project(
 
 js_library(
     name = "app_package",
-    package_name = "@example/app",
+    package_name = "app",
     srcs = ["package.json"],
     deps = [":app_compiled"],
 )
@@ -30,8 +30,7 @@ nodejs_binary(
     data = [
         ":app_package",
     ],
-    entry_point = ":index.js"
-
+    entry_point = ":main.js"
 )
 
 # Test targets
@@ -46,6 +45,7 @@ ts_project(
     deps = [
         "@npm//@types",
         "@npm//jest",
+        ":app_package",
     ]
 )
 

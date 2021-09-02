@@ -1,5 +1,1 @@
-function run() {
-    console.log("Hello World!");
-}
-
-run();
+export * from './lib';

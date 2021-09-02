@@ -6,14 +6,18 @@ def jest_test(name, srcs, deps, jest_config, **kwargs):
         "--no-cache",
         "--no-watchman",
         "--ci",
-        "--colors",
+        "--no-colors",
+        "--verbose",
     ]
     templated_args.extend(["--config", "$(rootpath %s)" % jest_config])
     for src in srcs:
         templated_args.extend(["--runTestsByPath", "$(rootpath %s)" % src])
 
-    data = [jest_config] + srcs + deps + ["//:jest-reporter.js"]
-    print("HELLO", templated_args, kwargs, data)
+    data = [jest_config] + srcs + deps + [
+        "//:jest-reporter.js",
+        "@npm//jest-junit",
+        "@npm//c8",
+    ]
 
     _jest_test(
         name = name,
