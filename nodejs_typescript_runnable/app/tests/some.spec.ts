@@ -6,4 +6,4 @@ describe("Test suite", () => {
 
         expect(true).toBeTruthy();
     });
-
+});
